@@ -20,7 +20,7 @@ void draw()
 	}
 	textSize(26);
 	text("TOTAL:", 480, 220);
-	text(sum);
+	text(sum, 500, 250);
 }
 class Die //models one single dice cube
 {
