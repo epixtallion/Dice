@@ -11,13 +11,16 @@ void setup()
 }
 void draw()
 {
+    int sum = 0;
 	for(int x = 25; x < 450; x = x+75){
 		for(int y = 25; y < 450; y = y+75){
 			d[x][y].show();
+			sum = sum+d[x][y].value;
 		}
 	}
 	textSize(26);
 	text("TOTAL:", 480, 220);
+	text(sum);
 }
 class Die //models one single dice cube
 {
