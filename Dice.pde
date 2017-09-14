@@ -1,16 +1,23 @@
+Die d[][] = new Die[450][450];
 void setup()
-{	
+{
 	size(600, 480);
 	noLoop();
+	for(int x = 25; x < 450; x = x+75){
+		for(int y = 25; y < 450; y = y+75){
+			d[x][y] = new Die(x, y);
+		}
+	}
 }
 void draw()
 {
 	for(int x = 25; x < 450; x = x+75){
 		for(int y = 25; y < 450; y = y+75){
-			Die d = new Die(x, y);
-			d.show();
+			d[x][y].show();
 		}
 	}
+	textSize(26);
+	text("TOTAL:", 480, 220);
 }
 class Die //models one single dice cube
 {
@@ -29,19 +36,43 @@ class Die //models one single dice cube
 	{
 		fill(255,255,255);
 		rect(myX, myY, 50, 50, 5);
+		fill(0,0,0);
 		switch (value) {
 			case 1:
-				fill(0,0,0);
 				ellipse(myX +25, myY+25, 10, 10);
+				return;
 			case 2:
-
+				ellipse(myX+50/3, myY+50/3, 10, 10);
+				ellipse(myX+50-(50/3), myY+50-(50/3), 10, 10);
+				return;
 			case 3:
-
+				ellipse(myX+50/4, myY+50/4, 10, 10);
+				ellipse(myX+50-(50/4), myY+50-(50/4), 10, 10);
+				ellipse(myX +25, myY+25, 10, 10);
+				return;
 			case 4:
+				ellipse(myX+50/4, myY+50/4, 10, 10);
+				ellipse(myX+50-(50/4), myY+50-(50/4), 10, 10);
+				ellipse(myX+50/4, myY+50-(50/4), 10, 10);
+				ellipse(myX+50-(50/4), myY+50/4, 10, 10);
+				return;
 			case 5:
+				ellipse(myX+50/4, myY+50/4, 10, 10);
+				ellipse(myX+50-(50/4), myY+50-(50/4), 10, 10);
+				ellipse(myX +25, myY+25, 10, 10);
+				ellipse(myX+50/4, myY+50-(50/4), 10, 10);
+				ellipse(myX+50-(50/4), myY+50/4, 10, 10);
+				return;
 			case 6:
+				ellipse(myX+50/4, myY+50/4, 10, 10);
+				ellipse(myX+50-(50/4), myY+50-(50/4), 10, 10);
+				ellipse(myX+50/4, myY+50-(50/4), 10, 10);
+				ellipse(myX+50-(50/4), myY+50/4, 10, 10);
+				ellipse(myX+50/4, myY+25, 10, 10);
+				ellipse(myX+50-(50/4), myY+25, 10, 10);
+				return;
 		}
-		System.out.println(value);
+		//System.out.println(value);
 	}
 }
 void mouseClicked(){
@@ -49,10 +80,10 @@ void mouseClicked(){
 		for(int y = 25; y < 450; y = y+75){
 			if(mouseX>=x && mouseX<=x+50 &&
 				mouseY>=y && mouseY<=y+50){
-				Die d = new Die(x, y);
-				d.show();
-				System.out.println(d.myX +" ," + d.myY);
+				d[x][y].roll();
+				//System.out.println(d[x][y].myX +" ," + d[x][y].myY);
 			}
 		}
 	}
+	redraw();
 }
