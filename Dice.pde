@@ -8,6 +8,7 @@ void setup()
 			d[x][y] = new Die(x, y);
 		}
 	}
+	background(191, 252, 219);
 }
 void draw()
 {
@@ -18,9 +19,20 @@ void draw()
 			sum = sum+d[x][y].value;
 		}
 	}
+	//Clear right side
+	noStroke();
+	fill(191, 252, 219);
+	rect(480, 0, 120, 480);
+
+	fill(0,0,0);
 	textSize(26);
 	text("TOTAL:", 480, 220);
+
+	//Show sum text
 	text(sum, 500, 250);
+
+	//reset stroke for dice
+	stroke(1);
 }
 class Die //models one single dice cube
 {
